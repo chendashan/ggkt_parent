@@ -16,6 +16,14 @@
     </modules>
 
     <dependencies>
+
+        <!--数据载体-->
+        <dependency>
+            <groupId>com.example</groupId>
+            <artifactId>service_utils</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
         <!--数据载体-->
         <dependency>
             <groupId>com.example</groupId>

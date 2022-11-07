@@ -4,10 +4,7 @@ package com.example.ggkt.vod.controller;
 import com.atguigu.ggkt.model.vod.Teacher;
 import com.example.ggkt.vod.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,5 +30,12 @@ public class TeacherController {
         List<Teacher> list = teacherService.list();
         return list;
     }
+
+    @DeleteMapping("remove/{id}")
+    public boolean removeTeacher(@PathVariable Long id) {
+        boolean isSuccess = teacherService.removeById(id);
+        return isSuccess;
+    }
+
 }
 
