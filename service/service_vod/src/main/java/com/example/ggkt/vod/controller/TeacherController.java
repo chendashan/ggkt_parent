@@ -6,6 +6,7 @@ import com.atguigu.ggkt.vo.vod.TeacherQueryVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.example.ggkt.exception.ExampleException;
 import com.example.ggkt.result.Result;
 import com.example.ggkt.vod.service.TeacherService;
 import io.swagger.annotations.ApiOperation;
@@ -34,6 +35,15 @@ public class TeacherController {
     //http://localhost:8301/admin/vod/teacher/findAll
     @GetMapping("findAll")
     public Result findAllTeacher() {
+
+        //int i = 10 / 0;
+
+//        try {
+//            int i = 10 / 0;
+//        } catch (Exception e) {
+//            throw new ExampleException(201, "执行自定义异常 ExampleException");
+//        }
+
         List<Teacher> list = teacherService.list();
         return Result.ok(list).message("查询数据成功");
     }
