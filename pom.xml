@@ -6,7 +6,6 @@
     <modules>
         <module>model</module>
         <module>service</module>
-        <module>service_vod</module>
         <module>common</module>
     </modules>
     <parent>
