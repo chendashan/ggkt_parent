@@ -112,6 +112,7 @@ public class TeacherController {
     @ApiOperation("修改讲师信息")
     @PostMapping("updateTeacher")
     public Result updateTeacher(@RequestBody Teacher teacher) {
+        teacher.setUpdateTime(null);
         boolean isSuccess = teacherService.updateById(teacher);
         if (isSuccess) {
             return Result.ok();
