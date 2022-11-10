@@ -76,7 +76,7 @@ public class TeacherController {
                 queryWrapper.like("name", name);
             }
             if (!StringUtils.isEmpty(level)) {
-                queryWrapper.eq("level", name);
+                queryWrapper.eq("level", level);
             }
             if (!StringUtils.isEmpty(joinDateBegin)) {
                 queryWrapper.ge("join_date", joinDateBegin);

@@ -24,7 +24,7 @@ public class Result<T> {
         if (data != null) {
             result.setData(data);
         }
-        result.setCode(200);
+        result.setCode(20000);
         result.setMessage("成功");
         return result;
     }
@@ -34,7 +34,7 @@ public class Result<T> {
         if (data != null) {
             result.setData(data);
         }
-        result.setCode(201);
+        result.setCode(20001);
         result.setMessage("失败");
         return result;
     }
