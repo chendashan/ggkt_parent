@@ -8,7 +8,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -33,6 +35,19 @@ public class SubjectController {
     public Result selectSubject(@PathVariable Long id) {
         List<Subject> subjectList = subjectService.selectSubjectList(id);
         return Result.ok(subjectList);
+    }
+
+    @ApiOperation("导出Excel")
+    @GetMapping("exportData")
+    public void exportData(HttpServletResponse response) {
+        subjectService.exportExcel(response);
+    }
+
+    @ApiOperation("导入课程")
+    @PostMapping("importData")
+    public Result importData(MultipartFile file) {
+        subjectService.importData(file);
+        return Result.ok().message("导入课程成功");
     }
 
 }
