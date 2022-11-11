@@ -2,7 +2,9 @@ package com.example.ggkt.vod.utils;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConstantPropertiesUtil implements InitializingBean {
 
     //@Value 注入
