@@ -49,5 +49,18 @@ public class CourseController {
         return Result.ok(map);
     }
 
+    @GetMapping("get/{id}")
+    public Result get(@PathVariable Long id) {
+        CourseFormVo courseFormVo = courseService.getCourseInfoById(id);
+        return Result.ok(courseFormVo);
+    }
+
+    @PostMapping("update")
+    public Result update(@RequestBody CourseFormVo courseFormVo) {
+        courseService.updateCourseInfo(courseFormVo);
+
+        return Result.ok();
+    }
+
 }
 

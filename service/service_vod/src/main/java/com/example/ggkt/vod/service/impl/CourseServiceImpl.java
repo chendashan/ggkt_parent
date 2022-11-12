@@ -95,6 +95,36 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         return course.getId();
     }
 
+    @Override
+    public CourseFormVo getCourseInfoById(Long id) {
+        Course course = baseMapper.selectById(id);
+        if (course == null) {
+            return null;
+        }
+        CourseFormVo courseFormVo = new CourseFormVo();
+        BeanUtils.copyProperties(course, courseFormVo);
+
+        CourseDescription courseDescription = courseDescriptionService.getById(id);
+        if (courseDescription != null) {
+            courseFormVo.setDescription(courseDescription.getDescription());
+        }
+
+        return courseFormVo;
+    }
+
+    @Override
+    public void updateCourseInfo(CourseFormVo courseFormVo) {
+        Course course = new Course();
+        BeanUtils.copyProperties(courseFormVo, course);
+        baseMapper.updateById(course);
+
+        CourseDescription courseDescription = courseDescriptionService.getById(courseFormVo.getId());
+        courseDescription.setDescription(courseFormVo.getDescription());
+        courseDescriptionService.updateById(courseDescription);
+
+
+    }
+
     private Course getNameById(Course course) {
         Teacher teacher = teacherService.getById(course.getTeacherId());
         if (teacher != null) {
