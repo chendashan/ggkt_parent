@@ -2,9 +2,8 @@ package com.example.ggkt.vod.controller;
 
 
 import com.atguigu.ggkt.model.vod.Course;
+import com.atguigu.ggkt.vo.vod.CourseFormVo;
 import com.atguigu.ggkt.vo.vod.CourseQueryVo;
-import com.atguigu.ggkt.vo.vod.CourseVo;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.ggkt.result.Result;
 import com.example.ggkt.vod.service.CourseService;
@@ -33,6 +32,13 @@ public class CourseController {
     @Autowired
     private CourseService courseService;
 
+
+    @ApiOperation("添加课程信息")
+    @PostMapping("save")
+    public Result save(@RequestBody CourseFormVo courseFormVo) {
+        Long courseId = courseService.saveCourseInfo(courseFormVo);
+        return Result.ok(courseId);
+    }
 
     @ApiOperation("点播课程列表")
     @GetMapping("{page}/{limit}")

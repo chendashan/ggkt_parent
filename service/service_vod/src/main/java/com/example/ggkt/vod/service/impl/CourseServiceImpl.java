@@ -1,16 +1,20 @@
 package com.example.ggkt.vod.service.impl;
 
 import com.atguigu.ggkt.model.vod.Course;
+import com.atguigu.ggkt.model.vod.CourseDescription;
 import com.atguigu.ggkt.model.vod.Subject;
 import com.atguigu.ggkt.model.vod.Teacher;
+import com.atguigu.ggkt.vo.vod.CourseFormVo;
 import com.atguigu.ggkt.vo.vod.CourseQueryVo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.ggkt.vod.mapper.CourseMapper;
+import com.example.ggkt.vod.service.CourseDescriptionService;
 import com.example.ggkt.vod.service.CourseService;
 import com.example.ggkt.vod.service.SubjectService;
 import com.example.ggkt.vod.service.TeacherService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -35,6 +39,9 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Autowired
     private SubjectService subjectService;
+
+    @Autowired
+    private CourseDescriptionService courseDescriptionService;
 
     @Override
     public Map<String, Object> findPageCourse(Page<Course> pageParam, CourseQueryVo queryVo) {
@@ -72,6 +79,20 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         map.put("records", records);
 
         return map;
+    }
+
+    @Override
+    public Long saveCourseInfo(CourseFormVo courseFormVo) {
+        Course course = new Course();
+        BeanUtils.copyProperties(courseFormVo, course);
+        baseMapper.insert(course);
+
+        CourseDescription courseDescription = new CourseDescription();
+        courseDescription.setDescription(courseFormVo.getDescription());
+        courseDescription.setId(course.getId());
+        courseDescriptionService.save(courseDescription);
+
+        return course.getId();
     }
 
     private Course getNameById(Course course) {

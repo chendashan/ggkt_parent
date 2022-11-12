@@ -26,9 +26,8 @@ public class FileUploadServiceImpl implements FileUploadService {
     public String upload(MultipartFile file) {
         // 1 初始化用户身份信息（secretId, secretKey）。
         // SECRETID和SECRETKEY请登录访问管理控制台 https://console.cloud.tencent.com/cam/capi 进行查看和管理
-        //String accessKeyId = ConstantPropertiesUtil.ACCESS_KEY_ID;
-        String secretId = "AKIDAJNEzeEjOPI90ogYOKGEyfG3l1MdLdTe";
-        String secretKey = "AHh8bx7GFC4oT4UxLZgcDKH5qQvLahAS";
+        String secretId = ConstantPropertiesUtil.ACCESS_SECRET_ID;
+        String secretKey = ConstantPropertiesUtil.ACCESS_SECRET_KEY;
         String endpoint = ConstantPropertiesUtil.END_POINT;
         COSCredentials cred = new BasicCOSCredentials(secretId, secretKey);
         // 2 设置 bucket 的地域, COS 地域的简称请参照 https://cloud.tencent.com/document/product/436/6224

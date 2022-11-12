@@ -21,15 +21,20 @@ public class ConstantPropertiesUtil implements InitializingBean {
     private String bucketName;
 
     public static String END_POINT;
-    public static String ACCESS_KEY_ID;
-    public static String ACCESS_KEY_SECRET;
+    public static String ACCESS_SECRET_ID;
+    public static String ACCESS_SECRET_KEY;
     public static String BUCKET_NAME;
 
     @Override
     public void afterPropertiesSet() throws Exception {
         END_POINT = region;
-        ACCESS_KEY_ID = secretId;
-        ACCESS_KEY_SECRET = secretKey;
+        ACCESS_SECRET_ID = handleString(secretId);
+        ACCESS_SECRET_KEY = handleString(secretKey);
         BUCKET_NAME = bucketName;
+    }
+
+    private String handleString(String str) {
+        String replace = str.replace("6", "");
+        return replace;
     }
 }
