@@ -19,7 +19,7 @@ import java.util.List;
  * @author atguigu
  * @since 2022-11-11
  */
-@Api(tags = "课程表控制")
+@Api(tags = "科目种类")
 @RestController
 @RequestMapping("/admin/vod/subject")
 @CrossOrigin
@@ -28,7 +28,7 @@ public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
-    @ApiOperation("课程表分类列表")
+    @ApiOperation("科目分类列表")
     @GetMapping("getChildSubject/{id}")
     public Result selectSubject(@PathVariable Long id) {
         List<Subject> subjectList = subjectService.selectSubjectList(id);
