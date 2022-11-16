@@ -19,7 +19,7 @@ public class VodServiceImpl implements VodService {
     public String updateVideo() {
         VodUploadClient client = new VodUploadClient(ConstantPropertiesUtil.ACCESS_SECRET_ID, ConstantPropertiesUtil.ACCESS_SECRET_KEY);
         VodUploadRequest request = new VodUploadRequest();
-        request.setMediaFilePath("D:\\MyCode\\IdeaProject\\other\\001.mp4");
+        request.setMediaFilePath("D:\\MyCode\\temp\\001.mp4");
         request.setProcedure("LongVideoPreset");
         try {
             VodUploadResponse response = client.upload("ap-guangzhou", request);
@@ -27,6 +27,7 @@ public class VodServiceImpl implements VodService {
             return fileId;
         } catch (Exception e) {
             // 业务方进行异常处理
+            e.printStackTrace();
             throw new ExampleException(20001, "上传视频失败");
         }
     }
