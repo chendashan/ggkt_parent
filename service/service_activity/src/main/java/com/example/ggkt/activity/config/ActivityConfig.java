@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@MapperScan("com.atguigu.ggkt.activity.mapper")
+@MapperScan("com.example.ggkt.activity.mapper")
 public class ActivityConfig {
     /**
      * 分页插件
